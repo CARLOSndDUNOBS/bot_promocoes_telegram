@@ -1,0 +1,22 @@
+[
+  {
+    "nome": "Memória RAM Corsair Vengeance RGB Pro SL 16GB 3200MHz",
+    "preco_alvo": 800.00,
+    "link": "https://www.kabum.com.br/produto/382752/memoria-ram-corsair-vengeance-rgb-pro-sl-16gb-2x8gb-3200mhz-ddr4-cl16-preto-cmh16gx4m2e3200c16"
+  },
+  {
+    "nome": "Fonte Corsair CX750 750W 80 Plus Bronze",
+    "preco_alvo": 500.00,
+    "link": "https://www.kabum.com.br/produto/543414/fonte-corsair-cx750-750w-80-plus-bronze-pfc-ativo-c-cabo-de-forca-atx-preto-cp-9020279-br"
+  },
+  {
+    "nome": "SSD ADATA Legend 860 1TB PCIe 4.0",
+    "preco_alvo": 600.00,
+    "link": "https://www.kabum.com.br/produto/703112/ssd-adata-legend-860-1tb-m-2-2280-pcie-gen-4x4-nvme-leitura-6000mb-s-gravacao-5000mb-s-compativel-com-ps5-preto-sleg-860-1000gcs"
+  },
+  {
+    "nome": "Placa Mãe Gigabyte B550M Aorus Elite",
+    "preco_alvo": 730.00,
+    "link": "https://www.kabum.com.br/produto/114781/placa-mae-gigabyte-b550m-aorus-elite-rev-1-3-amd-am4-micro-atx-ddr4-preto-b550m-aorus-elite"
+  }
+]
