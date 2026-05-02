@@ -29,15 +29,27 @@ def enviar_telegram(mensagem):
 
 
 def limpar_preco(preco_texto):
-    """
-    Converte textos como:
-    'R$ 1.199,90' -> 1199.90
-    'R$ 799,99'   -> 799.99
-    """
-    preco_limpo = re.sub(r"[^\d,]", "", preco_texto)
-    preco_limpo = preco_limpo.replace(",", ".")
+    preco_texto = preco_texto.strip()
 
-    return float(preco_limpo)
+    print("DEBUG preço bruto:", repr(preco_texto))
+
+    # Remove espaços especiais
+    preco_texto = preco_texto.replace("\xa0", " ")
+
+    # Mantém só números
+    somente_numeros = re.sub(r"\D", "", preco_texto)
+
+    print("DEBUG somente números:", somente_numeros)
+
+    if len(somente_numeros) < 3:
+        return float(somente_numeros)
+
+    reais = somente_numeros[:-2]
+    centavos = somente_numeros[-2:]
+
+    preco_final = float(f"{reais}.{centavos}")
+
+    return preco_final
 
 
 def pegar_preco(url):
