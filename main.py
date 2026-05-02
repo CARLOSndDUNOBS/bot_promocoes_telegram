@@ -1,5 +1,6 @@
 import os
 import json
+import re
 import requests
 from dotenv import load_dotenv
 from bs4 import BeautifulSoup
@@ -27,6 +28,18 @@ def enviar_telegram(mensagem):
         print(resposta.text)
 
 
+def limpar_preco(preco_texto):
+    """
+    Converte textos como:
+    'R$ 1.199,90' -> 1199.90
+    'R$ 799,99'   -> 799.99
+    """
+    preco_limpo = re.sub(r"[^\d,]", "", preco_texto)
+    preco_limpo = preco_limpo.replace(",", ".")
+
+    return float(preco_limpo)
+
+
 def pegar_preco(url):
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
@@ -45,23 +58,21 @@ def pegar_preco(url):
 
     soup = BeautifulSoup(resposta.text, "html.parser")
 
-    preco_elemento = soup.find("h4", {"class": "text-secondary-500"})
+    preco_elemento = (
+        soup.find("h4", {"class": "text-secondary-500"}) or
+        soup.find("div", {"class": "mui-1jk88bq-price_vista-extraSpacePriceVista"})
+    )
 
     print("Elemento encontrado:", preco_elemento)
 
     if preco_elemento:
         preco_texto = preco_elemento.text
+        print("Preço em texto:", preco_texto)
 
-        preco_limpo = (
-            preco_texto
-            .replace("R$", "")
-            .replace("\xa0", "")
-            .replace(".", "")
-            .replace(",", ".")
-            .strip()
-        )
+        preco_atual = limpar_preco(preco_texto)
+        print("Preço convertido:", preco_atual)
 
-        return float(preco_limpo)
+        return preco_atual
 
     return None
 
